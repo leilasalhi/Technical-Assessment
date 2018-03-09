@@ -1,0 +1,27 @@
+<?php
+  /** 
+   * Ce fichier represente la vue pour afficher la liste des usagers et pouvoir faire des mises a jour
+  */
+?>
+<html>
+  <head>
+    <title>List of users</title>
+  </head>
+  <body>
+  <h1>List of users</h1>
+  <table style="border:1px solid">
+    <tr><td>First name</td><td>Last name</td><td>Email</td><td>Operation</td></tr>
+  <?php
+    while($rangee = mysqli_fetch_assoc($donnees))
+    {
+      echo "<tr>";
+      echo "<td>" . $rangee["first_name"] . "</td><td>" . $rangee["last_name"] . "</td><td>" . $rangee["email"] . 
+      "</td><td><a href='index.php?action=deleteUser&idUser=" . $rangee["user_id"] . "'>Delete user</a></td><td><a href='index.php?action=updateUser&idUser=" . $rangee["user_id"] . "'>Update user</a></td>";
+      echo "</tr>";
+    }
+  ?>
+  </table>
+  <a href="index.php?action=addUser">Add new user</a><br/>
+  <a href="index.php">Return</a>
+  </body>
+</html> 
